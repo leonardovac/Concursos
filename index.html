@@ -1,0 +1,156 @@
+<!doctype html>
+<html data-bs-theme="dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=yes" name="viewport">
+    <title>Calculadora Concursos - Beta</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
+    <meta content="light dark" name="color-scheme">
+
+    <script defer src="js/botões.js"></script>
+    <script defer src="js/cálculo.js"></script>
+</head>
+<body class="bootstrap">
+<script crossorigin="anonymous"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container text-center">
+    <h3>Calculadora Concursos (ESA/EsPCEx)</h3><br>
+
+    <div aria-label="Basic radio toggle button group" class="btn-group" role="group">
+        <input autocomplete="off" checked class="btn-check" id="btnESA" name="btnradio" onclick="mudarConcurso('ESA');"
+               type="radio">
+        <label class="btn btn-outline-primary" for="btnESA">ESA</label>
+
+        <input autocomplete="off" class="btn-check" id="btnEsPCEx" name="btnradio" onclick="mudarConcurso('EsPCEx');"
+               type="radio">
+        <label class="btn btn-outline-primary" for="btnEsPCEx">EsPCEx</label>
+    </div>
+    <br>
+    <form id="ESA" name="ESA">
+        <div class="row">
+            <div class="col">
+                <br>
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="ESA-PT" min="0" max="14" name="PT" placeholder="0" type="number">
+                    <label for="ESA-PT">Português</label>
+                </div>
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="ESA-MAT" min="0" max="14" name="MAT" placeholder="0" type="number">
+                    <label for="ESA-MAT">Matemática</label>
+                </div>
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="ESA-GEO" min="0" max="6" name="GEO" placeholder="0" type="number">
+                    <label for="ESA-GEO">Geografia</label>
+                </div>
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="ESA-HIS" min="0" max="6" name="HIS" placeholder="0" type="number">
+                    <label for="ESA-HIS">História</label>
+                </div>
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="ESA-ING" min="0" max="10" name="ING" placeholder="0" type="number">
+                    <label for="ESA-ING">Inglês</label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" onclick="calcular('ESA')" type="button">Calcular</button>
+        <button class="btn btn-secondary" onclick="limpar()" type="reset">Limpar</button>
+        <br><br>
+    </form>
+    <form id="EsPCEx" name="EsPCEx" style="display:none">
+        <div class="row">
+            <div class="col">
+                <br>
+                Dia 1
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="EsPCEx-PT" min="0" max="20" name="PT" placeholder="0" type="number">
+                    <label for="EsPCEx-PT">Português</label>
+                </div>
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="EsPCEx-FIS" min="0" max="12" name="FIS" placeholder="0" type="number">
+                    <label for="EsPCEx-FIS">Física</label>
+                </div>
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="EsPCEx-QUI" min="0" max="12" name="QUI" placeholder="0" type="number">
+                    <label for="EsPCEx-QUI">Química</label>
+                </div>
+            </div>
+            <div class="col">
+                <br>
+                Dia 2
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="EsPCEx-MAT" min="0" max="20" name="MAT" placeholder="0" type="number">
+                    <label for="EsPCEx-MAT">Matemática</label>
+                </div>
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="EsPCEx-GEO" min="0" max="12" name="GEO" placeholder="0" type="number">
+                    <label for="EsPCEx-GEO">Geografia</label>
+                </div>
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="EsPCEx-HIS" min="0" max="12" name="HIS" placeholder="0" type="number">
+                    <label for="EsPCEx-HIS">História</label>
+                </div>
+                <div class="form-floating mb-1">
+                    <input class="form-control" id="EsPCEx-ING" min="0" max="12" name="ING" placeholder="0" type="number">
+                    <label for="EsPCEx-ING">Inglês</label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" onclick="calcular('EsPCEx')" type="button">Calcular</button>
+        <button class="btn btn-secondary" onclick="limpar()" type="reset">Limpar</button>
+        <br><br>
+    </form>
+    <div class="resultado"></div>
+    <div class="accordion" id="info">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button aria-controls="flush-collapseOne" aria-expanded="false" class="accordion-button collapsed"
+                        data-bs-target="#flush-collapseOne" data-bs-toggle="collapse" type="button">
+                    Como usar
+                </button>
+            </h2>
+            <div class="accordion-collapse collapse" data-bs-parent="#info" id="flush-collapseOne">
+                <div class="accordion-body">Basta escolher a escola, e preencher cada campo com seu número de
+                    acertos.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button aria-controls="flush-collapseTwo" aria-expanded="false" class="accordion-button collapsed"
+                        data-bs-target="#flush-collapseTwo" data-bs-toggle="collapse" type="button">
+                    Como saber se estou classificado?
+                </button>
+            </h2>
+            <div class="accordion-collapse collapse" data-bs-parent="#info" id="flush-collapseTwo">
+                <div class="accordion-body">Só é possível dizer APÓS a lista com a relação dos candidatos.
+                    <br>As provas variam a dificuldade/anulações com os anos, portanto usar os anos anteriores como
+                    parâmetro não é 100% preciso.
+                    <br>Mas é claro que ao acertar ≈90% da prova sua vaga é praticamente certa.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button aria-controls="flush-collapseThree" aria-expanded="false" class="accordion-button collapsed"
+                        data-bs-target="#flush-collapseThree" data-bs-toggle="collapse" type="button">
+                    Sobre
+                </button>
+            </h2>
+            <div class="accordion-collapse collapse" data-bs-parent="#info" id="flush-collapseThree">
+                <div class="accordion-body">O código do site pode ser encontrado em meu  GitHub<br>Feito em HTML/JS/CSS,
+                    usando o framework Bootstrap.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div aria-atomic="true" aria-live="assertive" class="toast" id="notificação" role="alert"></div>
+</div>
+</div>
+</body>
+</html>
